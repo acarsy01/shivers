@@ -5,7 +5,9 @@ interface Command {
   name: string;
   description: string;
   aliases: (RegExp | string)[];
-  exec: (db: any, message: Message, args: string[]) => MessageContent;
+  category: string;
+  permissions: ((msg: Message) => (Promise<boolean> | boolean))[]
+  exec: (db: any, message: Message, args: string[]) => (MessageContent | Promise<MessageContent>);
 }
 
 export default Command;

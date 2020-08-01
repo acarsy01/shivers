@@ -5,8 +5,9 @@ import { StatusType } from "../modules/Discordeno/types/discord.ts";
 import { AloeDB } from "../modules/AloeDB/mod.ts";
 
 import GuildData from "../interfaces/GuildData.ts";
+import getUsers from "../utils/getUsers.ts";
 
-export default async (db: AloeDB<GuildData>) => {
+export default (async (db: AloeDB<GuildData>) => {
   const defaultPrefixes = new Array(Deno.env.get("PREFIX") as string);
 
   for (const guild of cache.guilds.array()) {
@@ -18,7 +19,7 @@ export default async (db: AloeDB<GuildData>) => {
     }
   }
 
-  editBotsStatus(StatusType.Online, `${Deno.env.get("PREFIX")}help | ${cache.guilds.size} guilds`, ActivityType.Listening);
+  editBotsStatus(StatusType.Online, `${Deno.env.get("PREFIX")}help | ${cache.guilds.size} guilds | ${getUsers().size.toString()}`, ActivityType.Listening);
 
   console.log("Bot is started.");
-}
+});

@@ -10,6 +10,8 @@ const Ping: Command = {
   name: "latency",
   description: "Displays the latency of the bot.",
   aliases: ["ping"],
+  permissions: [],
+  category: "utility",
   exec: (db: any, message: Message, args: string[]) => {
     const startedTimestamp = Date.now();
     const embed = new Embed();
